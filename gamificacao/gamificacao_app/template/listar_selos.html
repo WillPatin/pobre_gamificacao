@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lista de Selos</title>
+  </head>
+  <body>
+    <h1>Selos Disponíveis</h1>
+    {% for selo in selos %}
+    <div>
+      <h2>{{ selo.nome }}</h2>
+      <p>{{ selo.descricao }}</p>
+      {% if selo.imagem %}
+      <img src="{{ selo.imagem.url }}" alt="{{ selo.nome }}" width="200" />
+      {% endif %}
+    </div>
+    {% endfor %}
+  </body>
+</html>

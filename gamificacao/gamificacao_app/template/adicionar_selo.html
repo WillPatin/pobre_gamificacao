@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adicionar Selo</title>
+  </head>
+  <body>
+    <h1>Adicionar Selo</h1>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Salvar Selo</button>
+    </form>
+    <a href="{% url 'listar_selos' %}">Voltar para lista de selos</a>
+  </body>
+</html>
