@@ -24,9 +24,9 @@ def verifica_concede_selo(usuario, criterio):
             selo = Selo.objects.get(nome="Esforçado Financeiro")
             if not selo.usuarios.filter(id=usuario.id).exists():
                 selo.usuarios.add(usuario)
-                return f"Selo '{selo.nome}' concedido!"
+                return f"Selo '{selo.nome}' conquistado!"
    
-    return "Critérios não atendidos para nenhum selo."
+    return "Critérios não atendidos"
 
 
 def criar_transacao(request):
