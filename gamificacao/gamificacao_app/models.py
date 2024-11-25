@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Selo(models.Model):
@@ -6,6 +7,7 @@ class Selo(models.Model):
     descricao = models.TextField()
     imagem = models.ImageField(upload_to='selos/') 
     data_criacao = models.DateTimeField(auto_now_add=True)
+    usuarios = models.ManyToManyField(User, related_name='selos', blank=True)
 
     def __str__(self):
         return self.nome
@@ -51,3 +53,12 @@ class Calendario(models.Model):
 
     def __str__(self):
         return self.titulo
+    
+class Transacao(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transacoes')
+    tipo = models.CharField(max_length=50)  
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    data = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.tipo} - {self.valor}"
