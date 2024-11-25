@@ -17,7 +17,6 @@ def adicionar_selo(request):
     return render(request, 'adicionar_selo.html', {'form': form})
 
 def verifica_concede_selo(usuario, criterio):
-
     if criterio == "transacoes_10":
         transacoes_contagem = Transacao.objects.filter(usuario=usuario).count()
         if transacoes_contagem >= 10:
@@ -25,8 +24,10 @@ def verifica_concede_selo(usuario, criterio):
             if not selo.usuarios.filter(id=usuario.id).exists():
                 selo.usuarios.add(usuario)
                 return f"Selo '{selo.nome}' conquistado!"
-   
+            else:
+                return f"Selo '{selo.nome}' já foi conquistado."
     return "Critérios não atendidos"
+
 
 
 def criar_transacao(request):
@@ -37,14 +38,17 @@ def criar_transacao(request):
             transacao.usuario = request.user  
             transacao.save()
             
-       
-            mensagem = verifica_concede_selo(request.user)
+            # Verifica e concede o selo com o critério correto
+            mensagem = verifica_concede_selo(request.user, "transacoes_10")
             
+            # Você pode exibir a mensagem em algum lugar, se necessário
+            print(mensagem)
             
             return redirect('listar_transacoes')
     else:
         form = TransacaoForm()
     return render(request, 'criar_transacao.html', {'form': form})
+
 
 def listar_transacoes(request):
    

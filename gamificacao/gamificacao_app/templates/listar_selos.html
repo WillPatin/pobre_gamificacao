@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Selos Recebidos</title>
-  </head>
-  <body>
-    <h1>Meus Selos</h1>
-    {% if selos %} {% for selo in selos %}
-    <div>
-      <h2>{{ selo.nome }}</h2>
-      <p>{{ selo.descricao }}</p>
-      {% if selo.imagem %}
-      <img src="{{ selo.imagem.url }}" alt="{{ selo.nome }}" width="200" />
-      {% endif %}
-    </div>
-    {% endfor %} {% else %}
-    <p>Você ainda não recebeu nenhum selo.</p>
-    {% endif %}
-  </body>
-</html>
+<h1>Meus Selos</h1>
+{% if selos %} {% for selo in selos %}
+<div>
+  <h2>{{ selo.nome }}</h2>
+  <p>{{ selo.descricao }}</p>
+
+  <img src="/media/selos/esforcado_financeiro.png" alt="Esforçado Financeiro" />
+</div>
+{% endfor %} {% else %}
+<p>Você ainda não possui selos.</p>
+{% endif %}
