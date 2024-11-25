@@ -8,7 +8,10 @@ class Selo(models.Model):
     imagem = models.ImageField(upload_to='selos/') 
     data_criacao = models.DateTimeField(auto_now_add=True)
     usuarios = models.ManyToManyField(User, related_name='selos', blank=True)
+    criterio = models.TextField(null=True, blank=True)
+    
 
+    
     def __str__(self):
         return self.nome
     
